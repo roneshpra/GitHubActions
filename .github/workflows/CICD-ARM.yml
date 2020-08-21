@@ -1,0 +1,40 @@
+name: workflow to deploy an ARM Template to a resource group using CLI commands
+on: push
+
+# CONFIGURATION
+# For help, go to https://github.com/Azure/Actions
+
+env:
+  AZURE_RESOURCE_GROUP: RG-IaCSample   # set this to your Azure Resource group's name  
+  AZURE_LOCATION: southcentralus  # set this to your Location Name 
+  
+jobs:
+  build-and-deploy-to-dev:
+    runs-on: ubuntu-latest
+    steps:
+                
+    # Authentication
+    # Set up the following secrets in your repository: AZURE_CREDENTIALS
+    # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS  }}
+    
+    # Checkout
+    - name: Checkout
+      uses: actions/checkout@v1
+        
+    # Deployment of template    
+    - name: Deploy ARM Template
+      uses: azure/CLI@v1
+      with:
+        azcliversion: latest
+        inlineScript: |
+        # You can change these environment variables for your configuration:   AZURE_RESOURCE_GROUP, AZURE_LOCATION 
+        # For details on usage of environment variables, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables
+        # or specify these parameters inline.  Example:  az group create -l westus -n MyResourceGroup
+        az group create --location ${{ env.AZURE_LOCATION }} --name ${{ env.AZURE_RESOURCE_GROUP }}   
+        az group deployment create --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --template-file $GITHUB_WORKSPACE/azuredeploy.json  --parameters $GITHUB_WORKSPACE/azuredeploy.parameters.json
+        # For more details on above command refer https://docs.microsoft.com/en-us/cli/azure/group/deployment?view=azure-cli-latest#az-group-deployment-create
+

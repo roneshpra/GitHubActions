@@ -1,10 +1,10 @@
 name: test
 # on: push
 on:
-  push:
+  #push:
   #schedule: 
   #  - cron: "*/5 * * * *"  
-  workflow_dispath: # manual run 
+  workflow_dispatch: # manual run 
 
 jobs: 
   build:

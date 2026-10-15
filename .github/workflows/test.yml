@@ -2,8 +2,9 @@ name: test
 # on: push
 on:
   push:
-  schedule: 
-    - cron: "*/5 * * * *"  
+  #schedule: 
+  #  - cron: "*/5 * * * *"  
+  workflow_dispath: # manual run 
 
 jobs: 
   build:

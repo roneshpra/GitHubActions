@@ -1,5 +1,19 @@
 name: test
-on: push
+# on: push
+  on:
+    push:
+    schedule: 
+      - cron: "*/5 * * * *"
+    
+  
+  jobs:
+    :
+      runs-on: 
+  
+      steps:
+        - name: 
+          run: 
+  
 
 jobs: 
   build:

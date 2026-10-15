@@ -9,3 +9,8 @@ jobs:
       - name: print hello world
         uses: actions/checkout@v4
       - run: echo "Hello World!"
+
+      - name: print sentence
+        uses: actions/checkout@v4
+      - run: echo "This is my first Github Action Workflow. "
+              echo "This looks good."

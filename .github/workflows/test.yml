@@ -1,19 +1,9 @@
 name: test
 # on: push
-  on:
-    push:
-    schedule: 
-      - cron: "*/5 * * * *"
-    
-  
-  jobs:
-    :
-      runs-on: 
-  
-      steps:
-        - name: 
-          run: 
-  
+on:
+  push:
+  schedule: 
+    - cron: "*/5 * * * *"  
 
 jobs: 
   build:

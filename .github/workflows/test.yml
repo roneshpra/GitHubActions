@@ -12,5 +12,5 @@ jobs:
 
       - name: print sentence
         uses: actions/checkout@v4
-      - run: echo "This is my first Github Action Workflow. "
-              echo "This looks good."
+      - run: echo "This is my first Github Action Workflow. 
+                  This looks good."
